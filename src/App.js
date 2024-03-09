@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          A brand new, blank React app.
+          This app will soon be another React tic-tac-toe game.
         </p>
       </header>
     </div>
