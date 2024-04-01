@@ -32,13 +32,9 @@ jobs:
     executor: node/default
     steps:
       - run:
-          name: add SSH_HOEST to known_hosts
+          name: SSH into EC2 instance
           command: |
-            ${SSH_HOST} >> ~/.ssh/known_hosts
-      - run:
-          name: SSH into EC2 instance to kill app and run build script
-          command: |
-            ssh $SSH_USER@$SSH_HOST 'sudo killall -9 node && sudo ./build.sh'
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'sudo killall -9 node && sudo ./build.sh'
 workflows:
   test-build-deploy:
     jobs:
