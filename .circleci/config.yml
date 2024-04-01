@@ -34,7 +34,7 @@ jobs:
       - run:
           name: SSH into EC2 instance
           command: |
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'sudo killall -9 node && sudo ./build.sh'
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'sudo killall -9 node; sudo ./build.sh;'
 workflows:
   test-build-deploy:
     jobs:
