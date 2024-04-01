@@ -29,20 +29,20 @@ jobs:
           path: ~/artifacts
           destination: node-build
   deploy:
-    # docker:
-      # - image: cimg/base:stable
+    machine:
+      image: ubuntu-2204:2023.07.2
     steps:
       - run:
           name: SSH into EC2 instance
           command: |
-            ssh $SSH_USER@$SSH_HOST ls -la
+            ssh $SSH_USER@$SSH_HOST 'ls -la'
 workflows:
-  build-and-test:
+  test-build-deploy:
     jobs:
       - test-node
       - build-node:
           requires:
             - test-node
-    - deploy:
-        requires:
-          - build-node
+      - deploy:
+          requires:
+            - build-node
