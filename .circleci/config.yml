@@ -29,13 +29,12 @@ jobs:
           path: ~/artifacts
           destination: node-build
   deploy:
-    machine:
-      image: ubuntu-2204:2023.07.2
+    executor: node/default
     steps:
       - run:
           name: SSH into EC2 instance
           command: |
-            ssh $SSH_USER@$SSH_HOST 'ls -la'
+            ssh $SSH_USER@$SSH_HOST 'sudo killall -9 node && sudo ./build.sh'
 workflows:
   test-build-deploy:
     jobs:
